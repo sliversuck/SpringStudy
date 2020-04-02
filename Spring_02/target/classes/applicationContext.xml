@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 加入头文件 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+	<!-- 声明dao -->
+	<bean id="userDao" class="dao.impl.UserDaoImpl"></bean>
+	<bean id="user2Dao" class="dao.impl.UserDao2Impl"></bean>
+	
+	<!-- 声明service -->
+	<bean id="userService" class="service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="userService2" class="service.impl.UserService2Impl">
+		<property name="userDao" ref="user2Dao"></property>
+	</bean>
+	<!-- 声明controller -->
+	
+	<bean id="userController" class="controller.UserController">
+		<property name="userService" ref="userService2"></property>
+	</bean>
+</beans>
